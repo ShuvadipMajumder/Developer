@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h2>Secured Welcome Page</h2>
+    <p th:if="${username}">Hello, <span th:text="${username}"></span>!</p>
+    <p th:if="${attributes}">Attributes: <span th:text="${attributes}"></span></p>
+
+    <a href="/logout">Logout</a>
+</body>
+</html>
