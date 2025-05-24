@@ -1,0 +1,15 @@
+Department: IT
+Manager: Jane Doe
+Employees: John Smith, Alice Johnson
+
+Department: HR
+Manager: Bob Wilson
+Employees: Sarah Brown, Mike Davis
+
+Department: Admin
+Manager: Walter He
+Employees: Alex Smith, Joe Johnson
+
+Department: BA
+Manager: Nenad Wilson
+Employees: Bob Brown, Jake Davis

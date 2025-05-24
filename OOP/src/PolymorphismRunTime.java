@@ -1,5 +1,6 @@
 // Polymorphism: The ability of an object to take many forms. It allows a method to behave differently based on the object calling it.
-
+//Run-Time Polymorphism (Method Overriding)
+//This happens while the program is running, using method overriding. It occurs when a subclass provides a specific implementation of a method already defined in its superclass.
 class DomAnimal {
 	void sound() {
 		System.out.println("Animal makes a sound");
@@ -20,7 +21,7 @@ class Cat extends DomAnimal {
 	}
 }
 
-public class Polymorphism {
+public class PolymorphismRunTime {
 	public static void main(String[] args) {
 		DomAnimal myAnimal = new DomAnimal();
 		DomAnimal myCow = new Cow();
