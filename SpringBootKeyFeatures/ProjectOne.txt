@@ -1,0 +1,249 @@
+10 must-know features of the Spring Boot framework 
+
+1. Auto Configuration
+✅ What It Does:
+Spring Boot auto-configures your application based on the libraries on the classpath.
+
+📘 Real-Life Use Case:
+You add Spring Web dependency — Spring Boot automatically sets up Tomcat, DispatcherServlet, etc.
+
+🧪 Code Example:
+java
+Copy
+Edit
+@RestController
+public class HelloController {
+    @GetMapping("/hello")
+    public String sayHello() {
+        return "Hello, Spring Boot!";
+    }
+}
+📁 pom.xml dependency (Spring Web):
+
+xml
+Copy
+Edit
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+Run the app and access http://localhost:8080/hello — no manual servlet setup required!
+
+2. Spring Boot Starter Dependencies
+✅ What It Does:
+Bundles related dependencies together. Easy to get started with one line.
+
+📘 Real-Life Use Case:
+Want to build a REST API? Use spring-boot-starter-web — no need to add Jackson, Tomcat, or Spring MVC separately.
+
+🧪 Code Example:
+xml
+Copy
+Edit
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+It includes Hibernate, Spring Data JPA, and a DB connection manager — all in one go.
+
+3. Spring Boot Actuator
+✅ What It Does:
+Exposes endpoints to monitor and manage the app (health, metrics, etc.).
+
+📘 Real-Life Use Case:
+DevOps can check /actuator/health to verify if the app is running fine.
+
+🧪 Code Example:
+xml
+Copy
+Edit
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+📁 application.properties
+
+properties
+Copy
+Edit
+management.endpoints.web.exposure.include=health,info
+Access: http://localhost:8080/actuator/health
+
+4. Embedded Servers (Tomcat/Jetty/Undertow)
+✅ What It Does:
+Runs your app as a standalone Java app with an embedded server.
+
+📘 Real-Life Use Case:
+No need to deploy WAR files to an external server — just java -jar app.jar.
+
+🧪 Code Example:
+Run the Spring Boot app with:
+
+bash
+Copy
+Edit
+mvn spring-boot:run
+Tomcat runs automatically on port 8080. You can change it:
+
+properties
+Copy
+Edit
+server.port=9090
+5. Profiles and Configuration Management
+✅ What It Does:
+Supports environment-specific configs (dev, test, prod).
+
+📘 Real-Life Use Case:
+Different DB credentials for dev and prod.
+
+🧪 Code Example:
+application-dev.properties
+
+properties
+Copy
+Edit
+spring.datasource.url=jdbc:h2:mem:devdb
+application-prod.properties
+
+properties
+Copy
+Edit
+spring.datasource.url=jdbc:mysql://prod-db:3306/proddb
+Activate with:
+
+properties
+Copy
+Edit
+spring.profiles.active=dev
+6. Spring Boot DevTools
+✅ What It Does:
+Enables hot-reload and live-reload — saves time during development.
+
+📘 Real-Life Use Case:
+Change a file, and the app restarts automatically — no need to re-run every time.
+
+🧪 Code Example:
+Add to pom.xml:
+
+xml
+Copy
+Edit
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <scope>runtime</scope>
+</dependency>
+Make a change in the controller, save — app reloads instantly.
+
+7. Spring Data JPA
+✅ What It Does:
+Simplifies database access using repositories — no boilerplate DAO code.
+
+📘 Real-Life Use Case:
+Save and fetch users with a few lines — no need to write SQL queries.
+
+🧪 Code Example:
+java
+Copy
+Edit
+@Entity
+public class User {
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String name;
+}
+java
+Copy
+Edit
+public interface UserRepository extends JpaRepository<User, Long> {
+    List<User> findByName(String name);
+}
+Use it in a controller:
+
+java
+Copy
+Edit
+@Autowired
+private UserRepository userRepository;
+
+@GetMapping("/users")
+public List<User> getUsers() {
+    return userRepository.findAll();
+}
+8. Exception Handling with @ControllerAdvice
+✅ What It Does:
+Centralizes error handling for REST APIs.
+
+📘 Real-Life Use Case:
+Return a consistent error response format.
+
+🧪 Code Example:
+java
+Copy
+Edit
+@ControllerAdvice
+public class GlobalExceptionHandler {
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                             .body("Something went wrong: " + e.getMessage());
+    }
+}
+9. Scheduling with @Scheduled
+✅ What It Does:
+Run jobs at fixed intervals or cron expressions.
+
+📘 Real-Life Use Case:
+Send reminder emails every day at 9 AM.
+
+🧪 Code Example:
+java
+Copy
+Edit
+@SpringBootApplication
+@EnableScheduling
+public class MyApp {}
+
+@Component
+public class ReminderJob {
+    @Scheduled(cron = "0 0 9 * * ?") // Every day at 9 AM
+    public void sendReminders() {
+        System.out.println("Sending daily reminders...");
+    }
+}
+10. Externalized Configuration with @Value or @ConfigurationProperties
+✅ What It Does:
+Reads config values from application.properties or .yml.
+
+📘 Real-Life Use Case:
+Load API keys or feature flags from environment variables or config files.
+
+🧪 Code Example:
+properties
+Copy
+Edit
+my.app.name=MyAwesomeApp
+java
+Copy
+Edit
+@RestController
+public class ConfigController {
+    @Value("${my.app.name}")
+    private String appName;
+
+    @GetMapping("/app-name")
+    public String getAppName() {
+        return appName;
+    }
+}
+Or use a config class:
+
+java
+Copy
+Edit
+@ConfigurationProperties(prefix = "my.app")
+public class AppProperties {
+    private String name;
+    // getters and setters
+}
