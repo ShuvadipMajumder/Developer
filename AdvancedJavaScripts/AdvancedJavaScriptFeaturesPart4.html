@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced JavaScript Features - Part 4</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #fff;
+    }
+    h2 {
+      margin-top: 40px;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      overflow-x: auto;
+      border-left: 4px solid #ff9800;
+    }
+    .note {
+      background: #fff7e6;
+      border-left: 4px solid #ff9800;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Advanced JavaScript Features - Part 4</h1>
+
+  <h2>16. Throttle Function</h2>
+  <div class="note">
+    Throttling ensures a function is only called once in a specified time interval. This is extremely useful when handling high-frequency events such as <code>scroll</code> or <code>resize</code> to improve performance.
+    <br><strong>Real-life use case:</strong> Logging scroll position or triggering lazy loading of images while the user scrolls.
+  </div>
+  <pre><code>
+function throttle(fn, limit) {
+  let lastCall = 0;
+  return function(...args) {
+    const now = Date.now();
+    if (now - lastCall >= limit) {
+      lastCall = now;
+      fn.apply(this, args);
+    }
+  };
+}
+
+const onScroll = throttle(() => console.log('Throttled!'), 1000);
+window.addEventListener('scroll', onScroll);
+  </code></pre>
+  <script>
+    function throttle(fn, limit) {
+      let lastCall = 0;
+      return function (...args) {
+        const now = Date.now();
+        if (now - lastCall >= limit) {
+          lastCall = now;
+          fn.apply(this, args);
+        }
+      };
+    }
+    const onScroll = throttle(() => console.log("Throttled scroll event!"), 1000);
+    window.addEventListener("scroll", onScroll);
+  </script>
+
+  <h2>17. Dynamic Imports</h2>
+  <div class="note">
+    <code>import()</code> lets you load modules dynamically on demand. This is useful for lazy loading parts of your application to reduce the initial load time.
+    <br><strong>Real-life use case:</strong> Loading code for a modal or charting library only when needed.
+  </div>
+  <pre><code>// import('./math.js').then(module => console.log(module.add(2, 3)));
+  </code></pre>
+  <p><em>Note: Dynamic imports require a module environment or server setup to work correctly and are not demoed inline here.</em></p>
+
+  <h2>18. Object.freeze & Object.seal</h2>
+  <div class="note">
+    <code>Object.freeze()</code> makes an object immutable (cannot modify or add/remove properties). 
+    <code>Object.seal()</code> allows changing existing properties but prevents adding/removing properties.
+    <br><strong>Real-life use case:</strong> Protect configuration objects or constants from being altered at runtime.
+  </div>
+  <pre><code>
+const frozen = Object.freeze({ name: 'John' });
+frozen.name = 'Jane'; // No effect
+console.log(frozen);
+
+const sealed = Object.seal({ age: 30 });
+sealed.age = 31;
+sealed.newProp = 100; // Not added
+console.log(sealed);
+  </code></pre>
+  <script>
+    const frozen = Object.freeze({ name: 'John' });
+    frozen.name = 'Jane';
+    console.log("Frozen object:", frozen);
+
+    const sealed = Object.seal({ age: 30 });
+    sealed.age = 31;
+    sealed.newProp = 100;
+    console.log("Sealed object:", sealed);
+  </script>
+
+  <h2>19. Event Delegation</h2>
+  <div class="note">
+    Event delegation attaches a single event listener to a parent element instead of each child. It takes advantage of event bubbling to handle events efficiently.
+    <br><strong>Real-life use case:</strong> Handling clicks on a long or dynamically generated list of items.
+  </div>
+  <pre><code>
+document.getElementById('list').addEventListener('click', e => {
+  if (e.target.tagName === 'LI') {
+    console.log('Item clicked:', e.target.textContent);
+  }
+});
+  </code></pre>
+  <ul id="list">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+  <script>
+    document.getElementById('list').addEventListener('click', e => {
+      if (e.target.tagName === 'LI') {
+        console.log("Delegated event:", e.target.textContent);
+      }
+    });
+  </script>
+
+  <h2>20. Custom Elements (Web Components)</h2>
+  <div class="note">
+    Custom elements are part of the Web Components standard, allowing you to define reusable HTML components with encapsulated logic and markup.
+    <br><strong>Real-life use case:</strong> Creating reusable UI widgets like tooltips, modals, or tabs.
+  </div>
+  <pre><code>
+class MyElement extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = '<b>Hello from Custom Element</b>';
+  }
+}
+customElements.define('my-element', MyElement);
+  </code></pre>
+  <my-element></my-element>
+  <script>
+    class MyElement extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = '<b>Hello from Custom Element</b>';
+      }
+    }
+    customElements.define('my-element', MyElement);
+  </script>
+</body>
+</html>

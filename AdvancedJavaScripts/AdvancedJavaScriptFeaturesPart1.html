@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced JavaScript Features Part1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            margin-top: 40px;
+        }
+
+        pre {
+            background: #eee;
+            padding: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Advanced JavaScript Features Part1</h1>
+
+    <h2>1. Closures</h2>
+    <p>
+        Closures allow a function to access variables from its outer scope even after the outer function has finished
+        execution.
+        This is powerful for data encapsulation and maintaining private state.
+    </p>
+    <p><strong>Real-life use case:</strong> Creating private counters, encapsulated modules, or memoization utilities.
+    </p>
+    <pre><code>
+function outer() {
+  let count = 0;
+  return function inner() {
+    return ++count;
+  };
+}
+const counter = outer();
+console.log(counter()); // 1
+console.log(counter()); // 2
+  </code></pre>
+    <script>
+        function outer() {
+            let count = 0;
+            return function inner() {
+                return ++count;
+            };
+        }
+        const counter = outer();
+        console.log("Closure Output:", counter()); // 1
+        console.log("Closure Output:", counter()); // 2
+    </script>
+
+    <h2>2. Promises</h2>
+    <p>
+        Promises represent the result of an asynchronous operation. They have three states: pending, fulfilled, or
+        rejected.
+        Promises simplify async code compared to callbacks.
+    </p>
+    <p><strong>Real-life use case:</strong> Making API calls and chaining multiple async tasks.</p>
+    <pre><code>
+        const myPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const success = true; // Simulate success or failure
+            if (success) {
+            resolve("Operation successful!");
+            } else {
+            reject("Operation failed!");
+            }
+        }, 1000);
+        });
+
+        myPromise
+        .then((result) => {
+            console.log("Success:", result); // Output if resolved
+        })
+        .catch((error) => {
+            console.error("Error:", error); // Output if rejected
+        });
+  </code></pre>
+    <script>
+        const myPromise = () => new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const success = true; // Simulate success or failure
+                if (success) {
+                    resolve("Operation successful!");
+                } else {
+                    reject("Operation failed!");
+                }
+            }, 1000);
+        });
+
+        myPromise()
+            .then((result) => {
+                console.log("Success:", result); // Output if resolved
+            })
+            .catch((error) => {
+                console.error("Error:", error); // Output if rejected
+            });
+    </script>
+
+    <h2>3. Async/Await</h2>
+    <p>
+        Async/await is syntactic sugar over promises. It makes asynchronous code look synchronous, improving
+        readability.
+    </p>
+    <p><strong>Real-life use case:</strong> Fetching and processing data in steps, like loading data and updating the UI
+        sequentially.</p>
+    <pre><code>
+async function getData() {
+  const result = await myPromise();
+  console.log(result);
+}
+getData();
+  </code></pre>
+    <script>
+        async function getData() {
+            const result = await myPromise();
+            console.log("Async/Await Output:", result);
+        }
+        getData();
+    </script>
+
+    <h2>4. Destructuring Assignment</h2>
+    <p>
+        Destructuring allows you to extract values from arrays or properties from objects into distinct variables.
+    </p>
+    <p><strong>Real-life use case:</strong> Simplifying data access in APIs and component props in frontend frameworks.
+    </p>
+    <pre><code>
+const user = { name: 'Alice', age: 30 };
+const { name, age } = user;
+console.log(name, age);
+  </code></pre>
+    <script>
+        const user ={name:'Alice', age:30}
+        const {name, age} = user;
+        console.log("Destructuring Output:", name, age);
+    </script>
+
+    <h2>5. Rest and Spread</h2>
+    <p>
+        Rest syntax (<code>...args</code>) collects arguments into an array. Spread syntax (<code>...array</code>)
+        expands iterable elements.
+    </p>
+    <p><strong>Real-life use case:</strong> Rest is used in functions with variable arguments. Spread helps merge
+        objects/arrays or pass elements as arguments.</p>
+    <pre><code>
+function sum(...nums) {
+  return nums.reduce((a, b) => a + b);
+}
+console.log(sum(1, 2, 3));
+
+const arr = [1, 2];
+const newArr = [...arr, 3];
+console.log(newArr);
+  </code></pre>
+    <script>
+        function sum(...nums) {
+            return nums.reduce((a, b) => a + b);
+        }
+        console.log("Rest Operator Output:", sum(1, 2, 3));
+
+        const arr = [1, 2];
+        const newArr = [...arr, 3];
+        console.log("Spread Operator Output:", newArr);
+    </script>
+
+    <!-- More features can be added below in the same pattern -->
+
+</body>
+
+</html>

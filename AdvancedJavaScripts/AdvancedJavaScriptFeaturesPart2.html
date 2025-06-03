@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced JavaScript Features - Part 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #fdfdfd;
+    }
+    h2 {
+      margin-top: 40px;
+    }
+    pre {
+      background: #f0f0f0;
+      padding: 10px;
+      overflow-x: auto;
+      border-left: 3px solid #2196f3;
+    }
+    .note {
+      background: #e8f4ff;
+      border-left: 4px solid #2196f3;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Advanced JavaScript Features - Part 2</h1>
+
+  <h2>6. Optional Chaining</h2>
+  <div class="note">
+    Optional chaining <code>?.</code> allows you to safely access deeply nested object properties without having to check if each level exists.<br>
+    <em>Real-life Example:</em> Useful when accessing user profile or configuration data that may not be fully available.
+  </div>
+  <pre><code>
+const user = { profile: { name: 'Bob' } };
+console.log(user?.profile?.name); // "Bob"
+console.log(user?.address?.street); // undefined
+  </code></pre>
+  <script>
+    
+    const user = { profile: { name: 'Bob' } };
+    console.log("Optional Chaining (existing):", user?.profile?.name);
+    console.log("Optional Chaining (non-existing):", user?.address?.street);
+  </script>
+
+  <h2>7. Nullish Coalescing Operator</h2>
+  <div class="note">
+    The <code>??</code> operator returns the right-hand operand only when the left-hand is <code>null</code> or <code>undefined</code> (not 0, false, or '').<br>
+    <em>Real-life Example:</em> Use for assigning default values only when data is truly missing.
+  </div>
+  <pre><code>
+let name = null;
+console.log(name ?? 'Default'); // "Default"
+
+let count = 0;
+console.log(count ?? 10); // 0
+  </code></pre>
+  <script>
+    let name = null;
+    console.log("Nullish (null):", name ?? "Default");
+
+    let count = 0;
+    console.log("Nullish (0):", count ?? 10);
+  </script>
+
+  <h2>8. Generators</h2>
+  <div class="note">
+    Generator functions (<code>function*</code>) return an iterator object and allow pausing/resuming execution using <code>yield</code>.<br>
+    <em>Real-life Example:</em> Used in pagination, animation frames, or asynchronous workflows.
+  </div>
+  <pre><code>
+function* generator() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+const it = generator();
+console.log(it.next().value); // 1
+console.log(it.next().value); // 2
+  </code></pre>
+  <script>
+    function* generator() {
+      yield 1;
+      yield 2;
+      yield 3;
+    }
+    const it = generator();
+    console.log("Generator step 1:", it.next().value);
+    console.log("Generator step 2:", it.next().value);
+    console.log("Generator step 3:", it.next().value);
+  </script>
+
+  <h2>9. Proxy</h2>
+  <div class="note">
+    A <code>Proxy</code> allows you to intercept and redefine fundamental operations (e.g., property lookup, assignment, enumeration).<br>
+    <em>Real-life Example:</em> Used for validation, access control, or automatic property fallback.
+  </div>
+  <pre><code>
+const user = { name: 'John' };
+const proxy = new Proxy(user, {
+  get(target, prop) {
+    return prop in target ? target[prop] : 'Not Found';
+  },
+});
+
+console.log(proxy.name); // "John"
+console.log(proxy.age);  // "Not Found"
+  </code></pre>
+  <script>
+    const userProxy = { name: 'John' };
+    const proxy = new Proxy(userProxy, {
+      get(target, prop) {
+        return prop in target ? target[prop] : 'Not Found';
+      }
+    });
+    console.log("Proxy existing property:", proxy.name);
+    console.log("Proxy missing property:", proxy.age);
+  </script>
+
+  <h2>10. Symbols</h2>
+  <div class="note">
+    <code>Symbol</code> creates a unique identifier, ideal for hiding object properties to avoid naming conflicts.<br>
+    <em>Real-life Example:</em> Used in frameworks to define private object properties or constants.
+  </div>
+  <pre><code>
+const id = Symbol('id');
+const user = { [id]: 123 };
+console.log(user[id]); // 123
+  </code></pre>
+  <script>
+    const id = Symbol("id");
+    const symUser = { [id]: 123 };
+    console.log("Symbol property access:", symUser[id]);
+  </script>
+
+</body>
+</html>

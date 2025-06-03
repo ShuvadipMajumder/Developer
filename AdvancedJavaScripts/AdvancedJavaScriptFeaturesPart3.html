@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced JavaScript Features - Part 3</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #fefefe;
+    }
+    h2 {
+      margin-top: 40px;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 10px;
+      overflow-x: auto;
+      border-left: 4px solid #4caf50;
+    }
+    .note {
+      background: #e6f9ec;
+      border-left: 4px solid #4caf50;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Advanced JavaScript Features - Part 3</h1>
+
+  <h2>11. Map and Set</h2>
+  <div class="note">
+    <strong>Map</strong> allows keys of any data type (including objects), and maintains insertion order. <strong>Set</strong> stores only unique values.<br>
+    <em>Real-life Example:</em> Maps can be used for caching data with object keys. Sets are ideal for filtering duplicates in an array.
+  </div>
+  <pre><code>
+const map = new Map();
+map.set('a', 1);
+map.set({ key: 'obj' }, 2);
+console.log(map);
+
+const set = new Set([1, 2, 2, 3]);
+console.log(set); // {1, 2, 3}
+  </code></pre>
+  <script>
+    const map = new Map();
+    map.set('a', 1);
+    map.set({ key: 'obj' }, 2);
+    console.log("Map example:", map);
+
+    const set = new Set([1, 2, 2, 3]);
+    console.log("Set example:", set);
+  </script>
+
+  <h2>12. WeakMap and WeakSet</h2>
+  <div class="note">
+    <strong>WeakMap</strong> and <strong>WeakSet</strong> only accept objects as keys/values and allow garbage collection when there are no references to those keys.<br>
+    <em>Real-life Example:</em> Useful for private data storage or caching DOM elements without preventing garbage collection.
+  </div>
+  <pre><code>
+let obj = {};
+const wm = new WeakMap();
+wm.set(obj, 'value');
+console.log(wm.get(obj));
+  </code></pre>
+  <script>
+    let obj = {};
+    const wm = new WeakMap();
+    wm.set(obj, 'value');
+    console.log("WeakMap example:", wm.get(obj));
+  </script>
+
+  <h2>13. Tagged Template Literals</h2>
+  <div class="note">
+    Tagged template literals allow custom processing of template literals using a function.<br>
+    <em>Real-life Example:</em> Used in libraries like styled-components and i18n translation tools.
+  </div>
+  <pre><code>
+function tag(strings, ...values) {
+  return strings[0] + values.map((v, i) => `[${v}]${strings[i + 1]}`).join('');
+}
+
+const name = 'Alice';
+const age = 25;
+console.log(tag`Name: ${name}, Age: ${age}`);
+  </code></pre>
+  <script>
+    function tag(strings, ...values) {
+      return strings[0] + values.map((v, i) => `[${v}]${strings[i + 1]}`).join('');
+    }
+    const name = 'Alice';
+    const age = 25;
+    console.log("Tagged Template Output:", tag`Name: ${name}, Age: ${age}`);
+  </script>
+
+  <h2>14. Function Currying</h2>
+  <div class="note">
+    Currying is a functional programming technique that converts a function with multiple arguments into a sequence of unary functions.<br>
+    <em>Real-life Example:</em> Used in composing reusable and configurable functions in frameworks like Redux.
+  </div>
+  <pre><code>
+function add(a) {
+  return function(b) {
+    return function(c) {
+      return a + b + c;
+    };
+  };
+}
+console.log(add(1)(2)(3)); // 6
+  </code></pre>
+  <script>
+    function add(a) {
+      return function (b) {
+        return function (c) {
+          return a + b + c;
+        };
+      };
+    }
+    console.log("Curried Function Output:", add(1)(2)(3));
+  </script>
+
+  <h2>15. Debounce Function</h2>
+  <div class="note">
+    Debouncing delays function execution until a certain time has passed since the last call.<br>
+    <em>Real-life Example:</em> Used in search input boxes to limit API calls during typing.
+  </div>
+  <pre><code>
+function debounce(fn, delay) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+const log = debounce(() => console.log('Debounced!'), 500);
+window.addEventListener('resize', log);
+  </code></pre>
+  <script>
+    function debounce(fn, delay) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => fn.apply(this, args), delay);
+      };
+    }
+    const log = debounce(() => console.log("Window resized (debounced)"), 500);
+    window.addEventListener("resize", log);
+  </script>
+</body>
+</html>
