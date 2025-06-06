@@ -1,7 +1,9 @@
-package advJava;
-
 import java.util.function.Function;
-
+// This program demonstrates method references in Java.
+// It defines a static method and an instance method that calculate the square of a number.
+// It then uses method references to create Function objects that refer to these methods.
+// The static method reference is used to refer to a static method in a class,
+// while the instance method reference is used to refer to a non-static method in an instance of a class.
 class StaticMethodRef {
 	public static double square(double num) {
 		System.out.println("inside StaticMethodRef class");

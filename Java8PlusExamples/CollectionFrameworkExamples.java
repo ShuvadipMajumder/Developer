@@ -15,6 +15,7 @@ public class CollectionFrameworkExamples {
         java.util.Set<String> set = new java.util.HashSet<>(list);
         set.add("Date");
         set.add("Apple"); // Duplicate, won't be added
+        //set.forEach(System.out::println);
 
         System.out.println("Set: " + set);
 
@@ -25,7 +26,7 @@ public class CollectionFrameworkExamples {
         map.put("Two", 2);
         map.put("Three", 3);
         map.put("One", 11); // Duplicate key, will update the value
-
+       // map.forEach((key, value) -> System.out.println( key +": "+value));
         System.out.println("Map: " + map);
 
         // Example of using a Queue
@@ -64,12 +65,14 @@ public class CollectionFrameworkExamples {
         // A SortedSet maintains elements in a sorted order
         java.util.SortedSet<String> sortedSet = new java.util.TreeSet<>(set);
         sortedSet.add("Elderberry");
+        //sortedSet.forEach(System.out::println);
         System.out.println("SortedSet: " + sortedSet);
 
         // Example of using a SortedMap
         // A SortedMap maintains key-value pairs in a sorted order based on keys
         java.util.SortedMap<String, Integer> sortedMap = new java.util.TreeMap<>(map);
         sortedMap.put("Zero", 0);
+        //sortedMap.forEach((key,value) -> System.out.println(key+": "+value));
         System.out.println("SortedMap: " + sortedMap);  
 
         // Example of using a LinkedHashSet

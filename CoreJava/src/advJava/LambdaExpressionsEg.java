@@ -1,4 +1,4 @@
-package advJava;
+
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -7,7 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-
+// This program demonstrates the use of lambda expressions in Java.
+// Lambda expressions provide a clear and concise way to represent a single method interface (functional interface).   
+// They can be used to implement functional interfaces, which are interfaces with a single abstract method.
+// A functional interface is an interface that contains exactly one abstract method.
+// The lambda expression syntax is (parameters) -> expression or (parameters) -> { statements; }.
 @FunctionalInterface
 interface MathOperation {
     int operate(int a, int b);
