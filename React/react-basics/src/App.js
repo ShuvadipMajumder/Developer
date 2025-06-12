@@ -3,11 +3,14 @@
 //import ClassComponent from "./components/ClassComponent";
 //import PropsExample from "./components/PropsExample";
 //import StateExample from './components/StateExample';
-import EffectsExample from './components/EffectsExample';
+//import EffectsExample from './components/EffectsExample';
 //import ConditionalRendering from './components/ConditionalRendering';
 //import ListAndKeys from './components/ListAndKeys';
 //import ChildrenExample from './components/ChildrenExample';
 //import ControlledUncontrolled from './components/ControlledUncontrolled';
+import UseRefExample from './components/UseRefExample';
+import FocusInput from  './components/FocusInput';
+
 
 function App() {
   return (
@@ -17,13 +20,15 @@ function App() {
     //PropsExample({message: "Parent Component!"})
     //<PropsExample message="Parent Component!" />
     //<StateExample />
-    <EffectsExample />
+    // <EffectsExample />
     //<ConditionalRendering isLoggedIn ={false}/>
     //<ListAndKeys />
     // <ChildrenExample> 
     //   <p> This message is passed from parent</p>
     // </ChildrenExample>
     // <ControlledUncontrolled></ControlledUncontrolled>
+    <><UseRefExample />
+    <FocusInput /></>
   );
 }
 

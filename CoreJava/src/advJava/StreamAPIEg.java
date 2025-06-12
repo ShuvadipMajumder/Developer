@@ -1,4 +1,4 @@
-package advJava;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.List;
 public class StreamAPIEg {
 
 	public static void main(String[] args) {
-		List<String> names = Arrays.asList("John", "Alice", "Bob", "Charlie");
-
+		//List<String> names = Arrays.asList("John", "Alice", "Bob", "Charlie");
+		List<String> names = List.of("John", "Alice", "Bob", "Charlie");
 		names
 		.stream()
 		.filter(name -> name.startsWith("C"))
@@ -24,6 +24,7 @@ public class StreamAPIEg {
 		.sorted()
 		.forEach(System.out::println); // Output: [Alice, Bob, Charlie, John]
 
+		
 	}
 
 }
