@@ -4,6 +4,7 @@ import java.util.function.Function;
 // It then uses method references to create Function objects that refer to these methods.
 // The static method reference is used to refer to a static method in a class,
 // while the instance method reference is used to refer to a non-static method in an instance of a class.
+
 class StaticMethodRef {
 	public static double square(double num) {
 		System.out.println("inside StaticMethodRef class");
@@ -23,10 +24,11 @@ public class MethodReference {
 
 		Function<Double, Double> square = StaticMethodRef::square;
 		double ansStatic = square.apply(23d);
-		System.out.println("ansStatic : "+ansStatic);
+		System.out.println("ansStatic : " + ansStatic);
+
 		RegularMethodRef hey = new RegularMethodRef();
 		Function<Double, Double> square2 = hey::square;
 		double ansInstance = square2.apply(23d);
-		System.out.println("ansInstance : "+ansInstance);
+		System.out.println("ansInstance : " + ansInstance);
 	}
 }

@@ -27,10 +27,12 @@ public class Abstraction {
 	}
 }
 
-
-//Real-life example: Car Driving
+// Real-life example: Car Driving
 //
-//When you drive a car, you don't need to know the intricate details of how the engine works or how the car processes fuel. All you need to do is press the accelerator to go forward, press the brake to stop, and turn the steering wheel to change direction. The complex implementation of the car's mechanics is hidden from the user.
-//
-//Abstract class: Car with abstract methods like start(), stop(), accelerate().
-//Concrete classes: ElectricCar, GasCar, which implement the abstract methods.
+// When you drive a car, you don't need to know the intricate details of how the
+// engine works or how the car processes fuel.
+// All you need to do is press the accelerator to go forward, press the brake to
+// stop, and turn the steering wheel to change direction. The complex
+// implementation of the car's mechanics is hidden from the user.
+// Abstract class: Car with abstract methods like start(), stop(), accelerate().
+// Concrete classes: ElectricCar, GasCar, which implement the abstract methods.
