@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation Template to Create an S3 Bucket for Spring Boot App
+
+Resources:
+  SpringBootAppS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: shuvadip-springboot-demo-bucket-2025
+      VersioningConfiguration:
+        Status: Enabled
+
+Outputs:
+  BucketName:
+    Description: Name of the created S3 bucket
+    Value: !Ref SpringBootAppS3Bucket
