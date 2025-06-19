@@ -1,3 +1,5 @@
+package advJava;
+
 import java.util.function.Function;
 // This program demonstrates method references in Java.
 // It defines a static method and an instance method that calculate the square of a number.

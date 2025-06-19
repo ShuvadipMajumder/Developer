@@ -1,4 +1,4 @@
-
+package advJava;
 
 //An interface with only one abstract method. It can have multiple default or static methods.
 @FunctionalInterface

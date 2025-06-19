@@ -1,3 +1,5 @@
+package advJava;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.CompletableFuture;
 
@@ -19,7 +21,7 @@ public class CompletableFutureEg {
 	// Simulate another task (like ordering ice cream)
 	public static String orderIceCream() {
 		try {
-			Thread.sleep(1500); // simulating delay
+			Thread.sleep(5000); // simulating delay
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -46,6 +48,33 @@ public class CompletableFutureEg {
 		System.out.println(combined.get());
 
 		System.out.println("Party time!");
+
+		// Simulate exception and handling
+		//Method 1
+//		CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+//			if (true) {
+//				throw new RuntimeException("Failed to fetch user data");
+//			}
+//			return "User: John Doe";
+//		});
+//		// ✅ Using .exceptionally() to handle failure and return fallback
+//		future.exceptionally(ex -> {
+//			System.err.println("Error: " + ex.getMessage());
+//			return "Fallback User: Dave Halls";
+//		}).thenAccept(result -> System.out.println("Result: " + result));
+		
+		//Method 2
+//		CompletableFuture.supplyAsync(() -> {
+//		    throw new RuntimeException("Oops again!");
+//		})
+//		.handle((result, ex) -> {
+//		    if (ex != null) {
+//		        System.err.println("Handled exception: " + ex.getMessage());
+//		        return "Default User";
+//		    }
+//		    return result;
+//		})
+//		.thenAccept(System.out::println);
 	}
 
 }
