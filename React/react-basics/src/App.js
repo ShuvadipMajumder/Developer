@@ -8,8 +8,10 @@
 //import ListAndKeys from './components/ListAndKeys';
 //import ChildrenExample from './components/ChildrenExample';
 //import ControlledUncontrolled from './components/ControlledUncontrolled';
-import UseRefExample from './components/UseRefExample';
-import FocusInput from  './components/FocusInput';
+//import UseRefExample from './components/UseRefExample';
+//import FocusInput from  './components/FocusInput';
+//import BrowserRouter from './components/BrowserRouter';
+import SimpleForm from './components/SimpleForm'
 
 
 function App() {
@@ -27,8 +29,10 @@ function App() {
     //   <p> This message is passed from parent</p>
     // </ChildrenExample>
     // <ControlledUncontrolled></ControlledUncontrolled>
-    <><UseRefExample />
-    <FocusInput /></>
+    //<><UseRefExample />
+    //<FocusInput /></>
+	//<BrowserRouter/>
+	<SimpleForm/>
   );
 }
 
