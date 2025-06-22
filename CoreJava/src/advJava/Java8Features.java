@@ -2,6 +2,7 @@ package advJava;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.Optional;
 
@@ -68,7 +69,8 @@ public class Java8Features {
 
         // 9. Predicate - Functional interface used for conditions
         //Predicate<T> takes an input argument of type T and returns a boolean value
-        names.stream().filter(((String s) -> s.length() > 3)).forEach(System.out::println);
+        Predicate <String> strLen = s -> s.length() > 3;
+        names.stream().filter(strLen).forEach(System.out::println);
 
         // 10. Function - Functional interface for transforming data
         //Function<T, R> takes two type parameters:	T: type of the input argument. 	R: type of the result produced by the function.

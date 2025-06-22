@@ -5,7 +5,7 @@ import java.util.*;
 public class Java17Features {
 	
     // Sealed class demo
-    sealed interface Shape permits Circle, Square {
+   sealed interface Shape permits Circle, Square {
         void draw();
     }
 
@@ -24,7 +24,7 @@ public class Java17Features {
     // Record class demo
     // Fields in a record class are inherently final, meaning their values cannot be altered once the record is created
     // Use case: data transfer objects (DTOs), database entities, or other similar data-carrying roles
-    record Person(String name, int age) {}
+    record Person (String name, int age) {}
     
     public static void main(String[] args) {
 
