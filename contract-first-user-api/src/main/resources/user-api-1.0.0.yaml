@@ -1,0 +1,49 @@
+openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/abc-4c3/user-api/1.0.0
+  description: SwaggerHub API Auto Mocking
+paths:
+  /users:
+    post:
+      summary: Create a user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "201":
+          description: User created
+  /users/{id}:
+    get:
+      summary: Get user by ID
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: User not found
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
